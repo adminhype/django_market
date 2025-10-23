@@ -1,10 +1,43 @@
 {% extends 'fruit_app/base.html' %}
+{% load static %}
 
 {% block content %}
   <h1>Fruit List</h1>
   <ul>
-    {% for fruit in fruits %}
-      <li>{{ fruit.name }} - {{ fruit.color }} - {{ fruit.weight }}</li>
-    {% endfor %}
+    <div class="fruit-container ordered">
+      <h2>Ordered Fruits</h2>
+      {% for fruit in fruits %}
+        {% if fruit.is_ordered %}
+          <div class="fruit-card">
+            <img src="{% static 'fruit_app/images/' %}{{ fruit.image }}" alt="{{ fruit.name }}" />
+            <h3>{{ fruit.name }}</h3>
+            <p>
+              <strong>Color:</strong> {{ fruit.color }}
+            </p>
+            <p>
+              <strong>Weight:</strong> {{ fruit.weight }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="fruit-container">
+      <h2>Not Ordered Fruits</h2>
+      {% for fruit in fruits %}
+        {% if not fruit.is_ordered %}
+          <div class="fruit-card">
+            <img src="{% static 'fruit_app/images/' %}{{ fruit.image }}" alt="{{ fruit.name }}" />
+            <h3>{{ fruit.name }}</h3>
+            <p>
+              <strong>Color:</strong> {{ fruit.color }}
+            </p>
+            <p>
+              <strong>Weight:</strong> {{ fruit.weight }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </ul>
+  <a href="{% url 'fruit-info' %}">More Fruit Information</a>
 {% endblock %}

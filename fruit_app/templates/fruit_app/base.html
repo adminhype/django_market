@@ -1,20 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'fruit_app/css/style.css' %}" />
     <title>Fruits</title>
   </head>
   <body>
-    {% include 'fruit_app/header.html' %}
     {% block content %}
       <h1>Welcome</h1>
-      <p>Here you can find a variety of fruits.</p>
     {% endblock %}
     {% block infos %}
       <footer>
-        <p>&copy; 2025</p>
+        <p>adem oencue &copy; 2025</p>
       </footer>
     {% endblock %}
+    {% include 'fruit_app/header.html' %}
   </body>
 </html>
